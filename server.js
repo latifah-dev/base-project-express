@@ -21,13 +21,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to latifah application." });
 });
 app.get("/user", async (req,res) => {
   const users = await db.User.findAll();
   res.respond(users,200);
 });
-
+//routes
+require("./app/routes/auth.routes")(app);
+require("./app/routes/user.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
